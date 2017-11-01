@@ -1,0 +1,361 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: POL eScript
+file_extensions:
+  - scp
+  - inc
+  - cfg
+scope: source.polscript
+
+contexts:
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  prototype:
+    - include: comments
+    - include: numbers
+    - include: operators
+    - include: strings
+
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - include: keywords
+    - include: modules
+    - include: includes
+    - include: function
+    - include: program
+    - include: enum
+    - include: if
+    - include: case
+    - include: while
+    - include: for
+    - include: foreach
+    - include: do
+    - include: repeat
+    - include: braces
+    - include: parens
+    - include: functions
+    - include: members
+    - include: constants
+    - include: cprop
+
+  keywords:
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+    - match: '\b(var|const)\b'
+      scope: storage.type.polscript
+    - match: '\b(array|dictionary|struct|byref|error)\b'
+      scope: storage.type.polscript
+    - match: '\b(return|exit)\b'
+      scope: keyword.control.conditional.polscript
+
+
+  # MAIN
+
+  function:
+    # FUNCTION statement balancing and exported keywords control
+    - match: '\b(exported\s*)?(function)\b'
+      captures:
+        1: entity.other.inherited-class.polscript
+        2: keyword.control.conditional.polscript
+      push: inside_function
+    - match: '\bendfunction\b'
+      scope: invalid.illegal.polscript
+
+  inside_function:
+    - match: '\bendfunction\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+  program:
+    # PROGRAM statement balancing control
+    - match: '\bprogram\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_program
+    - match: '\bendprogram\b'
+      scope: invalid.illegal.polscript
+
+  inside_program:
+    - match: '\bendprogram\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+  enum:
+    # ENUM statement balancing control
+    - match: '\benum\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_enum
+    - match: '\bendenum\b'
+      scope: invalid.illegal.polscript
+
+  inside_enum:
+    - match: '\bendenum\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+
+  # CONDITIONAL
+
+  if:
+    # IF statement balancing and else keywords control
+    - match: '\bif\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_if
+    - match: '\b(elseif|else|endif)\b'
+      scope: invalid.illegal.polscript
+
+  inside_if:
+    - match: '\belseif\b'
+      scope: keyword.control.conditional.polscript
+      set: inside_elseif
+    - match: '\belse\b'
+      scope: keyword.control.conditional.polscript
+      set: inside_else
+    - match: '\bendif\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+  inside_elseif:
+    - match: '\b(elseif)\b'
+      scope: keyword.control.conditional.polscript
+    - match: '\belse\b'
+      scope: keyword.control.conditional.polscript
+      set: inside_else
+    - match: '\bendif\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+  inside_else:
+    - match: '\bendif\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+  case:
+    # CASE statement balancing and options control
+    - match: '\bcase\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_case
+    - match: '\bendcase\b'
+      scope: invalid.illegal.polscript
+
+  inside_case:
+    - match: '^\s*\w+:'
+      scope: entity.other.attribute-name.polscript
+    - match: '\bendcase\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+
+
+  # LOOPS
+
+  while:
+    # WHILE statement balancing
+    - match: '\bwhile\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_while
+    - match: '\bendwhile\b'
+      scope: invalid.illegal.polscript
+
+  inside_while:
+    - match: '\bendwhile\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+    - include: inside_loop
+
+  for:
+    # FOR statement balancing
+    - match: '\bfor\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_for
+    - match: '\bendfor\b'
+      scope: invalid.illegal.polscript
+
+  inside_for:
+    - match: '\bendfor\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+    - include: inside_loop
+
+  foreach:
+    # FOREACH statement balancing
+    - match: '\bforeach\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_foreach
+    - match: '\bendforeach\b'
+      scope: invalid.illegal.polscript
+
+  inside_foreach:
+    - match: '\bendforeach\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+    - include: inside_loop
+
+  do:
+    # DO statement balancing
+    - match: '\bdo\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_do
+    - match: '\bdowhile\b'
+      scope: invalid.illegal.polscript
+
+  inside_do:
+    - match: '\bdowhile\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+    - include: inside_loop
+
+  repeat:
+    # REPEAT statement balancing
+    - match: '\brepeat\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_repeat
+    - match: '\buntil\b'
+      scope: invalid.illegal.polscript
+
+  inside_repeat:
+    - match: '\buntil\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: main
+    - include: inside_loop
+
+  inside_loop:
+    # Generic loop control
+    - match: '\b(continue|break)\b'
+      scope: keyword.control.conditional.polscript
+
+
+  # BRACES & PARENS
+
+  braces:
+    # BRACES {} balancing
+    - match: \{
+      scope: punctuation.section.braces.begin.polscript
+      push: inside_braces
+    - match: \}
+      scope: invalid.illegal.polscript
+
+  inside_braces:
+    - match: \}
+      scope: punctuation.section.braces.end.polscript
+      pop: true
+    - include: main
+
+  parens:
+    # PARENTHESES () balancing
+    - match: \(
+      scope: punctuation.section.parens.begin.polscript
+      push: inside_parens
+    - match: \)
+      scope: invalid.illegal.polscript
+
+  inside_parens:
+    - match: \)
+      scope: punctuation.section.parens.end.polscript
+      pop: true
+    - include: main
+
+
+  # POL SPECIFICS
+
+  functions:
+    - match: '\b(CheckSkil|AlterAttributeTemporaryMod|GetAttributeName|GetAttribute|GetAttributeBaseValue|GetAttributeIntrinsicMod|GetAttributeTemporaryMod|GetAttributeLock|SetAttributeLock|GetAttributeDefaultCap|GetAttributeCap|SetAttributeCap|SetAttributeBaseValue|SetAttributeTemporaryMod|BaseSkillToRawSkill|RawSkillToBaseSkill|Find|Len|Upper|Lower|CInt|CDbl|CStr|CAsc|CChr|CAscZ|CChrZ|Bin|Hex|Compare|SplitWords|SubStr|Trim|StrReplace|TypeOfInt|Print|MoveBoat|MoveBoatRelative|MoveBoatXY|RegisterItemWithBoat|BoatFromItem|TurnBoat|SystemFindBoatBySerial|ReadConfigFile|FindConfigElem|GetConfigMaxIntKey|GetConfigStringKeys|GetConfigIntKeys|ListConfigElemProps|GetConfigInt|GetConfigReal|GetConfigString|GetConfigStringArray|GetConfigIntArray|GetConfigStringDictionary|AppendConfigFileElem|UnloadConfigFile|LoadTusScpFile|GetElemProperty|SendSysMessageCL|PrintTextAboveCL|PrintTextAbovePrivateCL|ListDataFiles|CreateDataFile|OpenDataFile|UnloadDataFile|FileExists|ReadFile|WriteFile|AppendToFile|LogToFile|OpenBinaryFile|CreateDirectory|ListDirectory|OpenXMLFile|CreateXMLFile|ListGuilds|FindGuild|CreateGuild|DestroyGuild|WriteHtml|WriteHtmlRaw|QueryParam|QueryIP|Sin|Cos|Tan|ASin|ACos|ATan|RadToDeg|DegToRad|Min|Max|Pow|Sqrt|Root|Abs|Log10|LogE|Ceil|Floor|ConstPi|ConstE|FormatRealToString|SetAnchor|Self|Wander|Face|Move|WalkToward|WalkAwayFrom|RunToward|RunAwayFrom|TurnToward|TurnAwayFrom|WalkTowardLocation|WalkAwayFromLocation|RunTowardLocation|RunAwayFromLocation|TurnTowardLocation|TurnAwayFromLocation|SetOpponent|SetWarMode|Say|SayUC|GetProperty|SetProperty|MakeBoundingBox|IsLegalMove|CanMove|Create_Debug_Context|GetProcess|GetPid|Unload_Scripts|Set_Script_Option|Sleep|Sleepms|Wait_For_Event|Events_Waiting|Set_Priority|Set_Critical|Set_Debug|Start_Script|Start_Skill_Script|Run_Script_To_Completion|Run_Script|SysLog|System_RPM|Clear_Event_Queue|Set_Event_Queue_Size|Is_Critical|OpenURL|OpenConnection|Debugger|CreateParty|DisbandParty|SendPartyMsg|SendPrivatePartyMsg|AddRealm|CreatePacket|DeleteRealm|GetCmdLevelName|GetCmdLevelNumber|GetItemDescriptor|FormatItemDescription|GetPackageByName|IncRevision|ListTextCommands|ListenPoints|MD5Encrypt|Packages|ReadMillisecondClock|Realms|ReloadConfiguration|SetSysTrayPopupText|mysql_connect|mysql_query|mysql_fetch_row|mysql_affected_rows|mysql_num_fields|mysql_num_rows|mysql_select_db|mysql_field_name|mysql_close|StorageAreas|FindStorageArea|FindRootItemInStorageArea|CreateStorageArea|CreateRootItemInStorageArea|DestroyRootItemInStorageArea|BroadcastUC|PrintTextAbovePrivateUC|PrintTextAboveUC|RequestInputUC|SendSysMessageUC|Accessible|AddAmount|AddMenuItem|ApplyConstraint|AssignRectToWeatherRegion|Attach|Broadcast|CancelTarget|CanWalk|CheckLineOfSight|CheckLosAt|CheckLosBetween|CloseGump|CloseTradeWindow|CloseWindow|ConsumeReagents|ConsumeSubstance|CoordinateDistance|CoordinateDistanceEuclidean|CreateAccount|CreateItemAtLocation|CreateItemCopyAtLocation|CreateItemInBackpack|CreateItemInContainer|CreateItemInInventory|CreateMenu|CreateMultiAtLocation|CreateNpcFromTemplate|DestroyItem|DestroyMulti|Detach|DisableEvents|DisconnectClient|Distance|DistanceEuclidean|EnableEvents|EnumerateItemsInContainer|EnumerateOnlineCharacters|EquipFromTemplate|EquipItem|EraseGlobalProperty|EraseObjProperty|FindAccount|FindObjtypeInContainer|FindPath|FindSubstance|GetAmount|GetCommandHelp|GetCoordsInLine|GetEquipmentByLayer|GetFacing|GetGlobalProperty|GetGlobalPropertyNames|GetHarvestDifficulty|GetMapInfo|GetMenuObjTypes|GetMultiDimensions|GetObjProperty|GetObjPropertyNames|GetObjType|GetObjtypeByName|GetRegionLightLevelAtLocation|GetRegionName|GetRegionNameAtLocation|GetRegionString|GetSpellDifficulty|GetStandingHeight|GetStandingLayers|GetWorldHeight|GrantPrivilege|HarvestResource|IsStackable|ListAccounts|ListEquippedItems|ListGhostsNearLocation|ListHostiles|ListItemsAtLocation|ListItemsNearLocation|ListItemsNearLocationOfType|ListItemsNearLocationWithFlag|ListMobilesInLineOfSight|ListMobilesNearLocation|ListMobilesNearLocationEx|ListOfflineMobilesInRealm|ListMultisInBox|ListObjectsInBox|ListMobilesInBox|ListStaticsAtLocation|ListStaticsInBox|ListStaticsNearLocation|MoveItemToContainer|MoveItemToSecureTradeWin|MoveObjectToLocation|OpenPaperdoll|PerformAction|PlayLightningBoltEffect|PlayMovingEffect|PlayMovingEffectEx|PlayMovingEffectXYZ|PlayMovingEffectXYZEx|PlayObjectCenteredEffect|PlayObjectCenteredEffectEx|PlaySoundEffect|PlaySoundEffectPrivate|PlaySoundEffectXYZ|PlayMusic|PlayStationaryEffect|PlayStationaryEffectEx|PrintTextAbove|PrintTextAbovePrivate|ReadGameClock|RegisterForSpeechEvents|ReleaseItem|RequestInput|ReserveItem|RestartScript|Resurrect|RevokePrivilege|SaveWorldState|SecureTradeWin|SelectColor|SelectMenuItem2|SendBuyWindow|SendCharProfile|SendCharacterRaceChanger|SendDialogGump|SendEvent|SendHousingTool|SendInstaResDialog|SendOpenBook|SendOpenSpecialContainer|SendOverallSeason|SendPacket|SendQuestArrow|SendSellWindow|SendSkillWindow|SendStatus|SendStringAsTipWindow|SendSysMessage|SendTextEntryGump|SendViewContainer|SetGlobalProperty|SetName|SetObjProperty|SetRegionLightLevel|SetRegionWeatherLevel|SetScriptController|Shutdown|SpeakPowerWords|StartSpellEffect|SubtractAmount|SystemFindObjectBySerial|Target|TargetCoordinates|TargetMultiPlacement|UpdateItem|UpdateMobile|UseItem|POLCore|GetMidpointCircleCoords|RandomInt|RandomIntMinMax|RandomFloat|RandomDiceRoll|StrFormatTime|ApplyDamage|ApplyRawDamage|HealDamage|ConsumeMana|ConsumeVital|GetVitalName|GetVital|GetVitalMaximumValue|GetVitalRegenRate|RecalcVitals|SetVital)\b'
+      scope: entity.name.function.polscript
+
+  members:
+    - match: '\b(getcharacter|getprop|move_char|propnames|set_uo_expansion|setdefaultcmdlevel|setname|setpassword|setprop|split|unban|ar|ar_base|ar_mod|onhitscript|append|erase|exists|insert|randomentry|reverse|shrink|size|sort|ip|transmit|Close|Flush|GetInt16|GetInt32|GetInt8|GetSInt16|GetSInt32|GetSInt8|GetString|Peek|Seek|SetInt16|SetInt32|SetInt8|SetSInt16|SetSInt32|SetSInt8|SetString|Size|Tell|has_offline_mobiles|hold|items|mobiles|portplank|starboardplank|tillerman|move_offline_mobiles|acct|acctname|ar|ar_mod|attached|backpack|candidate_of_party|clientinfo|clienttype|clientver_detail|clientversion|cmdlevel|cmdlevelstr|concealed|connected|createdat|criminal|cursor|damage_cold|damage_cold_mod|damage_energy|damage_energy_mod|damage_fire|damage_fire_mod|damage_physical|damage_physical_mod|damage_poison|damage_poison_mod|dead|deafened|delay_mod|evasionchance_mod|followers|followers_max|frozen|gender|getcorpse|gold|guild|guildid|gump|hidden|hitchance_mod|luck|movecost_run_mod|movecost_run_mounted_mod|movecost_walk_mod|movecost_walk_mounted_mod|movemode|murderer|opponent|paralyzed|party|partycanloot|poisoned|prompt|race|reportables|resist_cold|resist_cold_mod|resist_energy|resist_energy_mod|resist_fire|resist_fire_mod|resist_physical|resist_physical_mod|resist_poison|resist_poison_mod|shield|skillcap|squelched|statcap|stealthsteps|tithing|title_guild|title_prefix|title_race|title_suffix|trading_with|truecolor|trueobjtype|uclang|uo_expansion_client|warmode|weapon|attack_once|clearAggressorTo|clearLawfullydamagedTo|cleargottenitem|compareversion|deaf|getgottenitem|kill|privileges|removereportable|setAggressorTo|setLawfullydamagedTo|setcmdlevel|setcriminal|setfacing|setlightlevel|setmurderer|setparalyzed|setpoisoned|setseason|setswingtimer|setwarmode|spendgold|squelch|corpsetype|ownerserial|EraseProp|GetProp|PropNames|SetProp|CreateElement|DeleteElement|FindElement|Keys|CreateDataFile|OpenDataFile|UnloadDataFile|keys|close|open|toggle|hp|maxhp|maxhp_mod|quality|errortext|allyguilds|enemyguilds|guildid|members|addallyguild|addenemyguild|addmember|eraseprop|getprop|isallyguild|isenemyguild|ismember|propnames|removeallyguild|removeenemyguild|removemember|setprop|components|custom|items|mobiles|add_component|erase_component|amount|buyprice|container|decayat|desc|equipscript|getgottenby|invisible|item_count|layer|movable|newbie|saveonexit|sellprice|stackable|tile_layer|unequipscript|usescript|locked|gumpheight|gumpwidth|xeast|xwest|ynorth|ysouth|appendpin|erasepin|getpins|insertpin|footprint|alignment|eventmask|master|npctemplate|process|run_speed|script|speech_color|speech_font|use_adjustments|canmove|privileges|setmaster|npcdesc|supports_http|GetInt16Flipped|GetInt32Flipped|GetUnicodeString|GetUnicodeStringFlipped|SendAreaPacket|SendPacket|SetInt16Flipped|SetInt32Flipped|SetSize|SetString|SetUnicodeString|SetUnicodeStringFlipped|candidates|leader|members|addcandidate|addmember|removecandidate|removemember|setleader|all_scripts|bytes_received|bytes_sent|combat_operations_per_min|compiledate|compiletime|error_creations_per_min|events_per_min|instr_per_min|iostats|itemcount|mobilecount|packages|priority_divide|queued_iostats|script_profiles|skill_checks_per_min|sysload|sysload_severity|systime|tasks_late_per_min|tasks_late_ticks_per_min|tasks_ontime_per_min|uptime|version|verstr|clear_script_profile_counters|log_profile|set_priority_divide|PC|attached_to|call_depth|consec_cycles|controller|globals|instr_cycles|name|num_globals|pid|sleep_cycles|state|var_size|clear_eventqueue|sendevent|AddSpell|HasSpell|RemoveSpell|Spells|color|facing|graphic|height|multi|name|objtype|realm|serial|weight|x|y|z|get_member|isa|set_member|attribute|dmg_mod|hitscript|intrinsic)\b'
+      scope: keyword.operator.word.polscript
+
+  constants:
+    - match: '\b(DF_KEYTYPE_STRING|DF_KEYTYPE_INTEGER|_DEFAULT_CLFONT|_DEFAULT_CLCOLOR|BOAT_SPEED_ONE_TILE|BOAT_SPEED_SLOW|BOAT_SPEED_MEDIUM|BOAT_SPEED_FAST|TRIM_LEFT|TRIM_RIGHT|TRIM_BOTH|OT_UNKNOWN|OT_UNINIT|OT_STRING|OT_LONG|OT_DOUBLE|OT_ARRAY|OT_APPLICPTR|OT_APPLICOBJ|OT_ERROR|OT_DICTIONARY|OT_STRUCT|OT_PACKET|OT_BINARYFILE|OT_XMLFILE|OT_XMLNODE|OT_XMLATTRIBUTES|OT_POLCOREREF|OT_ACCOUNTREF|OT_CONFIGFILEREF|OT_CONFIGELEMREF|OT_DATAFILEREF|OT_DATAELEMREF|OT_GUILDREF|OT_PARTYREF|OT_BOUNDINGBOX|OT_DEBUGCONTEXT|OT_SCRIPTEXREF|OT_PACKAGE|OT_MENUREF|OT_MOBILEREF|OT_OFFLINEMOBILEREF|OT_ITEMREF|OT_BOATREF|OT_MULTIREF|OT_CLIENTREF|OT_SQLCONN|OT_SQLRESULT|OT_SQLROW|ATTRIBUTE_LOCK_UP|ATTRIBUTE_LOCK_DOWN|ATTRIBUTE_LOCK_LOCKED|ATTRIBUTE_MAX_BASE|LOG_DATETIME|OPENMODE_IN|OPENMODE_OUT|OPENMODE_ATE|OPENMODE_APP|OPENMODE_TRUNC|SEEKDIR_BEG|SEEKDIR_CUR|SEEKDIR_END|LITTLE_ENDIAN|BIG_ENDIAN|LISTDIR_LIST_DIRS|LISTDIR_DONT_LIST_DIRS|LISTDIR_NO_FILES|LISTDIR_ALL_FILES|SAY_TEXTTYPE_DEFAULT|SAY_TEXTTYPE_WHISPER|SAY_TEXTTYPE_YELL|SAY_LANG|SAY_DOEVENT_DISABLE|SAY_DOEVENT_ENABLE|FACE_NORMAL|FACE_FORCE|SCRIPTOPT_NO_INTERRUPT|SCRIPTOPT_DEBUG|SCRIPTOPT_NO_RUNAWAY|SCRIPTOPT_CAN_ACCESS_OFFLINE_MOBILES|SCRIPTOPT_AUXSVC_ASSUME_STRING|MSGLEN_VARIABLE|JOURNAL_UC_PRINT_NAME|JOURNAL_UC_PRINT_YOU_SEE|_DEFAULT_UCFONT|_DEFAULT_UCCOLOR|SHARD_NAME|SHARD_WWWMAIN|SHARD_WWWRULES|SHARD_BUGSADDR|SHARD_HELPADDR|SHARD_MAILADDR|SHARD_WIKI|SHARD_TICKETS|SHARD_FORUM|CRMULTI_IGNORE_MULTIS|CRMULTI_IGNORE_OBJECTS|CRMULTI_IGNORE_WORLDZ|CRMULTI_IGNORE_ALL|CRMULTI_FACING_NORTH|CRMULTI_FACING_EAST|CRMULTI_FACING_SOUTH|CRMULTI_FACING_WEST|LH_FLAG_LOS|LH_FLAG_INCLUDE_HIDDEN|FP_IGNORE_MOBILES|FP_IGNORE_DOORS|VENDOR_SEND_AOS_TOOLTIP|VENDOR_BUYABLE_CONTAINER_FILTER|SENDDIALOGMENU_FORCE_OLD|LISTENPT_HEAR_GHOSTS|LISTENPT_HEAR_TOKENS|LISTENPT_NO_SPEECH|ITEMS_IGNORE_STATICS|ITEMS_IGNORE_MULTIS|LIST_IGNORE_Z|LISTEX_FLAG_NORMAL|LISTEX_FLAG_HIDDEN|LISTEX_FLAG_GHOST|LISTEX_FLAG_CONCEALED|LISTEX_FLAG_PLAYERS_ONLY|LISTEX_FLAG_NPC_ONLY|TILEDATA_FLAG_BACKGROUND|TILEDATA_FLAG_WEAPON|TILEDATA_FLAG_TRANSPARENT|TILEDATA_FLAG_TRANSLUCENT|TILEDATA_FLAG_WALL|TILEDATA_FLAG_DAMAGING|TILEDATA_FLAG_IMPASSABLE|TILEDATA_FLAG_WET|TILEDATA_FLAG_UNK|TILEDATA_FLAG_SURFACE|TILEDATA_FLAG_BRIDGE|TILEDATA_FLAG_STACKABLE|TILEDATA_FLAG_WINDOW|TILEDATA_FLAG_NOSHOOT|TILEDATA_FLAG_PREFIX_A|TILEDATA_FLAG_PREFIX_AN|TILEDATA_FLAG_INTERNAL|TILEDATA_FLAG_FOLIAGE|TILEDATA_FLAG_PARTIAL_HUE|TILEDATA_FLAG_UNK1|TILEDATA_FLAG_MAP|TILEDATA_FLAG_CONTAINER|TILEDATA_FLAG_WEARABLE|TILEDATA_FLAG_LIGHTSOURCE|TILEDATA_FLAG_ANIMATED|TILEDATA_FLAG_HOVEROVER|TILEDATA_FLAG_UNK2|TILEDATA_FLAG_ARMOR|TILEDATA_FLAG_ROOF|TILEDATA_FLAG_DOOR|TILEDATA_FLAG_STAIRBACK|TILEDATA_FLAG_STAIRRIGHT|MAPDATA_FLAG_NONE|MAPDATA_FLAG_MOVELAND|MAPDATA_FLAG_MOVESEA|MAPDATA_FLAG_BLOCKSIGHT|MAPDATA_FLAG_OVERFLIGHT|MAPDATA_FLAG_ALLOWDROPON|MAPDATA_FLAG_GRADUAL|MAPDATA_FLAG_BLOCKING|MAPDATA_FLAG_MORE_SOLIDS|MAPDATA_FLAG_WALKBLOCK|MAPDATA_FLAG_MOVE_FLAGS|MAPDATA_FLAG_DROP_FLAGS|MAPDATA_FLAG_ALL|MOVEOBJECT_NORMAL|MOVEITEM_IGNOREMOVABLE|MOVEOBJECT_FORCELOCATION|JOURNAL_PRINT_NAME|JOURNAL_PRINT_YOU_SEE|RESURRECT_FORCELOCATION|MOVETYPE_PLAYER|MOVETYPE_COREMOVE|MOVETYPE_CORECREATE|INSERT_ADD_ITEM|INSERT_INCREASE_STACK|DELETE_BY_PLAYER|DELETE_BY_SCRIPT|ENUMERATE_IGNORE_LOCKED|ENUMERATE_ROOT_ONLY|FINDSUBSTANCE_IGNORE_LOCKED|FINDSUBSTANCE_ROOT_ONLY|FINDSUBSTANCE_FIND_ALL|TE_CANCEL_DISABLE|TE_CANCEL_ENABLE|TE_STYLE_DISABLE|TE_STYLE_NORMAL|TE_STYLE_NUMERICAL|SYSFIND_SEARCH_OFFLINE_MOBILES|TGTOPT_CHECK_LOS|TGTOPT_NOCHECK_LOS|TGTOPT_HARMFUL|TGTOPT_NEUTRAL|TGTOPT_HELPFUL|POLCLASS_UOBJECT|POLCLASS_ITEM|POLCLASS_MOBILE|POLCLASS_NPC|POLCLASS_LOCKABLE|POLCLASS_CONTAINER|POLCLASS_CORPSE|POLCLASS_DOOR|POLCLASS_SPELLBOOK|POLCLASS_MAP|POLCLASS_MULTI|POLCLASS_BOAT|POLCLASS_HOUSE|POLCLASS_EQUIPMENT|POLCLASS_ARMOR|POLCLASS_WEAPON|RACE_HUMAN|RACE_ELF|RACE_GARGOYLE|_DEFAULT_TEXT_FONT|_DEFAULT_TEXT_FONT|_DEFAULT_REALM|REALM_BRITANNIA|REALM_BRITANNIA_ALT|REALM_ILSHENAR|REALM_MALAS|REALM_TOKUNO|REALM_TERMUR|ACTION_DIR_FORWARD|ACTION_DIR_BACKWARD|ACTION_NOREPEAT|ACTION_REPEAT|CANWALK_DIR|UPDATEMOBILE_RECREATE|UPDATEMOBILE_UPDATE|CLOSE_PAPERDOLL|CLOSE_STATUS|CLOSE_PROFILE|CLOSE_CONTAINER|CHARPROFILE_NO_UNEDITABLE_TEXT|CHARPROFILE_NO_EDITABLE_TEXT|DAMAGE_USE_REPSYS|DAMAGE_NO_REPSYS|DAMAGE_NO_SHOW|DAMAGE_SHOW|DAMAGE_USE_DEFAULT|RECALC_INTRINSIC_MOD|RECALC_NO_INTRINSIC_MOD|RECALC_VITALS|RECALC_NO_VITALS)\b'
+      scope: constant.language.polscript
+
+  modules:
+    - match: '(use)\s(attributes|basic|basicio|boat|cfgfile|cliloc|datafile|file|guild|http|math|npc|os|party|polsys|storage|unicode|uo|util|vitals)'
+      captures:
+        1: entity.name.namespace.polscript
+        2: support.class.polscript
+
+  includes:
+    - match: '(include)\s(\"[\:\/\w\s]+\")'
+      captures:
+        1: entity.name.namespace.polscript
+        2: string.quoted.double.polscript
+
+  cprop:
+    - match: '(CProp)\s(.*)\s([si])(.*)'
+      captures:
+        1: keyword.other.polscript
+        2: entity.name.class.polscript
+        3: constant.character.escape.polscript
+        4: string.unquoted.polscript
+
+
+  # GENERAL
+
+  numbers:
+    - match: '\b0x[0-9ABCDEF]+\b'
+      scope: constant.numeric.hex.polscript
+    - match: '\b[0-9]+\.[0-9]+\b'
+      scope: constant.numeric.float.polscript
+    - match: '\b[0-9]+\b'
+      scope: constant.numeric.integer.polscript
+
+  operators:
+    - match: '(:=|\+=|-=|->)'
+      scope: keyword.operator.assignment.polscript
+    - match: '(\+|-|\*|/)'
+      scope: keyword.operator.arithmetic.polscript
+    - match: '(&&|\band\b|\|\||\bor\b)'
+      scope: keyword.operator.bitwise.polscript
+    - match: '(==|!=|!|<=|<|>=|>)'
+      scope: keyword.operator.logical.polscript
+    - match: ;
+      scope: keyword.operator.polscript
+
+  strings:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character.
+    - match: '"'
+      scope: punctuation.definition.string.begin.polscript
+      push: inside_string
+
+  inside_string:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.double.polscript
+    - match: '"'
+      scope: punctuation.definition.string.end.polscript
+      pop: true
+
+  comments:
+    # Comments begin with a '//' and finish at the end of the line.
+    - match: '//'
+      scope: punctuation.definition.comment.polscript
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.double-slash.polscript
+        - match: $\n?
+          pop: true
+    # Comments begin with a '/*' and finish with '*/'.
+    - match: '/\*'
+      scope: punctuation.definition.comment.polscript
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.block.polscript
+        - match: '\*/'
+          pop: true
