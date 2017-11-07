@@ -1,0 +1,203 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: POL eScript CFG
+file_extensions:
+  - cfg
+scope: source.polscript
+
+contexts:
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  prototype:
+    - include: comments
+    - include: numbers
+    - include: operators
+    - include: strings
+    - include: prop
+    - include: cprop
+
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - include: script
+
+  script:
+    - include: enum
+    - include: braces
+    - include: parens
+
+
+  # MAIN
+
+  enum:
+    # ENUM statement balancing control
+    - match: '(?i)\benum\b'
+      scope: keyword.control.conditional.polscript
+      push: inside_enum
+    - match: '(?i)\bendenum\b'
+      scope: invalid.illegal.polscript
+
+  inside_enum:
+    - match: '(?i)\bendenum\b'
+      scope: keyword.control.conditional.polscript
+      pop: true
+    - include: script
+
+
+  # BRACES & PARENS
+
+  braces:
+    # BRACES {} balancing
+    - match: \{
+      scope: punctuation.section.braces.begin.polscript
+      push: inside_braces
+    - match: \}
+      scope: invalid.illegal.polscript
+
+  inside_braces:
+    - match: \}
+      scope: punctuation.section.braces.end.polscript
+      pop: true
+    - include: script
+
+  parens:
+    # PARENTHESES () balancing
+    - match: \(
+      scope: punctuation.section.parens.begin.polscript
+      push: inside_parens
+    - match: \)
+      scope: invalid.illegal.polscript
+
+  inside_parens:
+    - match: \)
+      scope: punctuation.section.parens.end.polscript
+      pop: true
+    - include: script
+
+
+  # POL SPECIFICS
+
+  prop:
+    - match: '(?i)\b(x|y|z|ID|Enabled|Name|Version|CoreRequired|Creator|Email|Maintainer|Email|Protocol|EnableFlowControlPackets|Listener|Port|Encryption|MIME|Extension|OnMount|ArmorZone|Name|Chance|Layer|BannedIP|IPMatch|Boat|ObjType|TillerMan|PortGangplankExtended|PortGangplankRetracted|StarboardGangplankExtended|StarboardGangplankRetracted|Hold|Mana|Difficulty|PointValue|Delay|Circle|itemlist|item|CmdLevel|DIR|ALIAS|ColorList|Color|DisplayParrySuccessMessages|WarmodeInhibitsRegen|WarModeDelay|Commands|CMD|Equipment|Equip|FileAccess|Package|Directory|Extension|AllowRead|AllowWrite|AllowAppend|AllowRemote|Region|Range|Guarded|NoCast|Midi|Graphic|Desc|Tooltip|Color|Facing|WalkOnScript|Script|EquipScript|UnequipScript|ControlScript|CreateScript|DestroyScript|MethodScript|RequiresAttention|Lockable|VendorSellsFor|VendorBuysFor|DecayTime|SaveOnExit|Movable|DoubleClickRange|UseRequiresLOS|GhostsCanUse|CanUseWhileFrozen|CanUseWhileParalyzed|Newbie|Invisible|DecaysOnMultis|BlocksCastingIfInHand|StrRequired|Weight|OldObjtype|StackingIgnoresCProps|Resource|Gump|MinX|MaxX|MinY|MaxY|MaxWeight|MaxItems|CanInsertScript|OnInsertScript|CanRemoveScript|OnRemoveScript|Door|XMod|YMod|doortype|House|MultiID|Boat|MultiID|Map|Editable|Weapon|Speed|Damage|Attribute|Anim|MountedAnim|HitSound|MissSound|HitScript|Projectile|ProjectileType|ProjectileAnim|ProjectileSound|MinRange|MaxRange|TwoHanded|Intrinsic|Armor|AR|OnHitScript|Coverage|Spellbook|spelltype|ItemMenu|Title|Entry|Walking|Running|Merchanttype|Sells|Buys|NameList|General|CriminalFlagInterval|AggressorFlagTimeout|NameColoring|Murderer|Criminal|Attackable|Innocent|GuildAlly|GuildEnemy|Invulnerable|GameServer|IP|DefaultDoubleclickRange|DoubleClickWait|EventVisibilityCoreChecks|MovementUsesStamina|AllowSecureTradingInWarMode|TotalStatsAtCreation|DefaultDecayTime|DefaultContainerMaxItems|DefaultContainerMaxWeight|UOFeatureEnable|HiddenTurnsCount|InvulTag|MaxPathFindRange|ItemColorMask|set|speechgroup|Stacking|IgnoreCprops|StartingLocation|City|Description|Coordinate|Combat|ProfileScripts|UoDataFileRoot|RetainCleartextPasswords|MinCmdlevelToLogin|InactivityWarningTimeout|InactivityDisconnectTimeout|MaximumClients|MaximumClientsBypassCmdLevel|WatchRpm|WatchSysload|LogSysload|LogScriptCycles|RunawayScriptThreshold|ReportRunToCompletionScripts|ReportCriticalScripts|MaxCallDepth|CacheInteractiveScripts|EnableAssertions|EnableDebugLog|DebugPort|DebugPassword|DebugLocalOnly|MiniDumpType|WebServer|WebServerPort|WebServerLocalOnly|WebServerDebug|WebServerPassword|CheckIntegrity|IgnoreLoadErrors|InhibitSaves|RequireSpellbooks|EnableSecureTrading|ExpLosChecksMap|Keyfile|Multithread|SelectTimeout|InitialUnits|UnitsPerArea|SecondsPerRegrow|Capacity|Range|Realm|LightRegion|LightLevel|LandTile|EnterText|LeaveText|ResourceSystem|ResourceType|WeatherRegion|WeatherType|WeatherSeverity|WeatherAux|ModuleDirectory|IncludeDirectory|PolScriptRoot|PackageRoot|PackageRoot|GenerateListing|GenerateDebugInfo|GenerateDebugTextInfo|DisplayWarnings|CompileAspPages|AutoCompileByDefault|UpdateOnlyOnAutoCompile|OnlyCompileUpdatedScripts|DisplaySummary|GenerateDependencyInfo|DisplayUpToDateScripts|RegenWhileDead|RegenRateFunction|MaximumFunction|Vital|Strength|Intelligence|Dexterity|Hits|Stamina|MaxSkillID|cliloc|tradeskill|Colors|Count|Names|SpellId|PowerWords|Reagent|Reagent|Reagent|Spell|SystemHookScript|Attack|ListenPort|ClientEncryptionVersion|AssertionFailureAction|UseNewStaticsFile|DebugLevel|LogLevel|dance|DayConfig|Length|static|dynamic|food|event|account|goloc|groups|boss|npc|plural|stackable|UoFlags|MoveLand|BlockSight|AllowDropOn|Gradual|MaxHP|msPerAttack|TrueColor|Gender|STR|INT|DEX|HITS|STAM|AttackSpeed|AttackDamage|AttackAttribute|AttackHitScript|AttackHitSound|AttackMissSound|attackAnim|guardignore|dstart|alignment|provoke|speech|saywords|AcctMatch|UseTileFlagPrefix|DecayItems|UseWinLFH|SkillId|default_points|Random|UoFlags|Height|BlockSight|Blocking|DescPrependAn|MoveLand|mapserver|uomapid|uodif|num_static_patches|num_map_patches|NoCombat|LightOverride|Light)\b'
+      scope: keyword.other.polscript
+
+  cprop:
+    - match: '(?i)(CProp)\s(.*)\s([si])(.*)'
+      captures:
+        1: keyword.other.polscript
+        2: entity.name.class.polscript
+        3: constant.character.escape.polscript
+        4: string.unquoted.polscript
+
+
+  # GENERAL
+
+  numbers:
+    - match: '(?i)0x[0-9ABCDEF]+'
+      scope: constant.numeric.hex.polscript
+    - match: '[0-9]+.[0-9]+'
+      scope: constant.numeric.float.polscript
+    - match: '[0-9]+'
+      scope: constant.numeric.integer.polscript
+
+  operators:
+    - match: '(:=|\+=|-=|->)'
+      scope: keyword.operator.assignment.polscript
+    - match: '(\+|-|\*|/)'
+      scope: keyword.operator.arithmetic.polscript
+    - match: '(?i)(&&|\band\b|\|\||\bor\b|\bnot\b)'
+      scope: keyword.operator.bitwise.polscript
+    - match: '(==|!|!=|<|<=|>|>=)'
+      scope: keyword.operator.logical.polscript
+    - match: ;
+      scope: keyword.operator.polscript
+
+  strings:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character.
+    - match: '"'
+      scope: punctuation.definition.string.begin.polscript
+      push: inside_string_double
+    - match: \'
+      scope: punctuation.definition.string.begin.polscript
+      push: inside_string_single
+
+  inside_string_double:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.double.polscript
+    - match: '"'
+      scope: punctuation.definition.string.end.polscript
+      pop: true
+    - include: htmltags
+
+  inside_string_single:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.single.polscript
+    - match: \'
+      scope: punctuation.definition.string.end.polscript
+      pop: true
+    - include: htmltags
+
+  htmltags:
+    - match: '(?i)<br>'
+      scope: support.class.polscript
+    - match: '(?i)<(\/)?(h[1-5]|b|i|u|center|body)>'
+      scope: support.class.polscript
+    - match: '(?i)<basefont'
+      scope: support.class.polscript
+      push:
+        - match: '(?i)(color=)((#)([0-9]{2})([0-9]{2})([0-9]{2})|\w*)'
+          captures:
+            1: entity.name.namespace.polscript
+            2: keyword.other.polscript
+            3: entity.name.namespace.polscript
+            4: keyword.other.polscript
+            5: entity.name.namespace.polscript
+            6: constant.numeric.hex.polscript
+        - match: '(?i)(face=)(UO_(Runic|Gargish)_(12|16|20)pt|[0-9]+)'
+          captures:
+            1: entity.name.namespace.polscript
+            2: keyword.other.polscript
+        - match: '(?i)(size=)([0-9]+)'
+          captures:
+            1: entity.name.namespace.polscript
+            2: keyword.other.polscript
+        - match: '>'
+          scope: support.class.polscript
+          pop: true
+    - match: '(?i)<\/basefont>'
+      scope: support.class.polscript
+    - match: '(?i)(<div)((\s(align=(left|center|right)))*)(>)'
+      captures:
+        1: support.class.polscript
+        2: entity.name.namespace.polscript
+        6: support.class.polscript
+    - match: '(?i)<\/div>'
+      scope: support.class.polscript
+    - match: '(?i)(<a)(\s((href=)(\w*))*)(>)'
+      captures:
+        1: support.class.polscript
+        2: entity.name.namespace.polscript
+        5: keyword.other.polscript
+        6: support.class.polscript
+    - match: '(?i)<\/a>'
+      scope: support.class.polscript
+
+  comments:
+    # Comments begin with a '//' and finish at the end of the line.
+    - match: '(//|#)'
+      scope: punctuation.definition.comment.polscript
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.double-slash.polscript
+        - match: $\n?
+          pop: true
+    # Comments begin with a '/*' and finish with '*/'.
+    - match: '/\*'
+      scope: punctuation.definition.comment.polscript
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.block.polscript
+        - match: '\*/'
+          pop: true
