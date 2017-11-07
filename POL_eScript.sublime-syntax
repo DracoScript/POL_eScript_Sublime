@@ -123,7 +123,7 @@ contexts:
     - match: '(?i)\bendif\b'
       scope: keyword.control.conditional.polscript
       pop: true
-    - include: main
+    - include: script
 
   inside_elseif:
     - match: '(?i)\b(elseif)\b'
@@ -134,7 +134,7 @@ contexts:
     - match: '(?i)\bendif\b'
       scope: keyword.control.conditional.polscript
       pop: true
-    - include: main
+    - include: script
 
   inside_else:
     - match: '(?i)\bendif\b'
