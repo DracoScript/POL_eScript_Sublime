@@ -25,6 +25,7 @@ contexts:
   script:
     - include: enum
     - include: braces
+    - include: brackets
     - include: parens
 
 
@@ -58,6 +59,20 @@ contexts:
   inside_braces:
     - match: \}
       scope: punctuation.section.braces.end.polscript
+      pop: true
+    - include: script
+
+  brackets:
+    # BRACKETS [] balancing
+    - match: \[
+      scope: punctuation.section.brackets.begin.polscript
+      push: inside_brackets
+    - match: \]
+      scope: invalid.illegal.polscript
+
+  inside_brackets:
+    - match: \]
+      scope: punctuation.section.brackets.end.polscript
       pop: true
     - include: script
 
