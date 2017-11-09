@@ -1,0 +1,353 @@
+# ----- METHODS ----- #
+
+
+
+# ACCOUNT
+
+addcharacter
+ban
+checkpassword
+delete
+deletecharacter
+disable
+enable
+eraseprop
+get_member
+getcharacter
+getprop
+move_char
+propnames
+set_uo_expansion
+setdefaultcmdlevel
+setname
+setpassword
+setprop
+split
+unban
+
+
+
+# ARMOR
+
+
+
+# ARRAY
+
+append
+cycle
+erase
+exists
+insert
+randomentry
+reverse
+shrink
+size
+sort
+
+
+
+# AUXCONNECTION
+
+transmit
+
+
+
+# BINARYFILE
+
+close
+flush
+getint16
+getint32
+getint8
+getsint16
+getsint32
+getsint8
+getstring
+peek
+seek
+setint16
+setint32
+setint8
+setsint16
+setsint32
+setsint8
+setstring
+size
+tell
+
+
+
+# BOAT
+
+move_offline_mobiles
+
+
+
+# CHARACTER
+
+addBuff
+attack_once
+clearAggressorTo
+clearBuffs
+clearLawfullydamagedTo
+cleargottenitem
+compareversion
+deaf
+delBuff
+disable
+disableSkillsFor
+enable
+enabled
+getcorpse
+getgottenitem
+kill
+privileges
+removereportable
+setAggressorTo
+setLawfullydamagedTo
+setcmdlevel
+setcriminal
+setfacing
+setlightlevel
+setmurderer
+setparalyzed
+setpoisoned
+setseason
+setswingtimer
+setwarmode
+spendgold
+squelch
+
+
+
+# CLIENT
+
+compareversion
+
+
+
+# CONTAINER
+
+
+
+# CORPSE
+
+
+
+# DATAFILEELEMENT
+
+EraseProp
+GetProp
+PropNames
+SetProp
+
+
+
+# DATAFILE
+
+CreateElement
+DeleteElement
+FindElement
+Keys
+
+
+
+# DICTIONARY
+
+erase
+exists
+insert
+keys
+size
+
+
+
+# DOOR
+
+close
+open
+toggle
+
+
+
+# EQUIPMENT
+
+
+
+# ERROR
+
+
+
+# GUILD
+
+addallyguild
+addenemyguild
+addmember
+eraseprop
+getprop
+isallyguild
+isenemyguild
+ismember
+propnames
+removeallyguild
+removeenemyguild
+removemember
+setprop
+
+
+
+# HOUSE
+
+acceptcommit
+add_component
+addhousepart
+cancelediting
+erase_component
+erasehousepart
+setcustom
+
+
+
+# ITEM
+
+hasExistingStack
+splitStackAt
+splitStackInto
+
+
+
+# LOCKABLE
+
+
+
+# MAP
+
+appendpin
+erasepin
+getpins
+insertpin
+
+
+
+# MULTI
+
+
+
+# NPC
+
+setmaster
+
+
+
+# PACKAGE
+
+
+
+# PACKET
+
+GetInt16
+GetInt16Flipped
+GetInt32
+GetInt32Flipped
+GetInt8
+GetSize
+GetString
+GetUnicodeString
+GetUnicodeStringFlipped
+SendAreaPacket
+SendPacket
+SetInt16
+SetInt16Flipped
+SetInt32
+SetInt32Flipped
+SetInt8
+SetSize
+SetString
+SetUnicodeString
+SetUnicodeStringFlipped
+
+
+
+# PARTY
+
+addcandidate
+addmember
+eraseprop
+getprop
+propnames
+removecandidate
+removemember
+setleader
+setprop
+
+
+
+# POLCORE
+
+clear_script_profile_counters
+log_profile
+set_priority_divide
+
+
+
+# SCRIPT
+
+clear_event_queue
+get_member
+kill
+loadsymbols
+sendevent
+
+
+
+# SPELLBOOK
+
+AddSpell
+HasSpell
+RemoveSpell
+Spells
+
+
+
+# STORAGEAREA
+
+
+
+# STORAGEAREAS
+
+
+
+# STRING
+
+find
+format
+join
+length
+lower
+upper
+
+
+
+# STRUCT
+
+erase
+exists
+insert
+keys
+size
+
+
+
+# UOBJECT
+
+eraseprop
+get_member
+getprop
+isa
+propnames
+set_member
+setprop
+
+
+
+# WEAPON
