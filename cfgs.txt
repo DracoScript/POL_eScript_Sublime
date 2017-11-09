@@ -1,0 +1,940 @@
+# ----- CFG - STRUCTURES ----- #
+
+
+
+# ANIMXLATE.CFG
+
+OnMount
+{
+}
+MobileType
+{
+    OldAnimX
+    NewAnim
+    Graphic
+}
+
+
+
+# ARMRZONE.CFG
+
+ArmorZone
+{
+    Name
+    Chance
+    Layer
+}
+
+
+
+# ATTRIBUTES.CFG
+
+Attribute
+{
+    Alias
+    GetIntrinsicModFunction
+    Delay
+    Unhides
+    Script
+    DefaultCap
+    DisableCoreChecks
+}
+
+
+
+# AUXSVC.CFG
+
+AuxService
+{
+    Port
+    Script
+    IPMatch
+}
+
+
+
+# BANNEDIPS.CFG
+
+BannedIP
+{
+    IPMatch
+}
+
+
+
+# BOATS.CFG
+
+Boat
+{
+    MultiId
+    TillerMan
+    PortGangplankExtended
+    PortGangplankRetracted
+    StarboardGangplankExtended
+    StarboardGangplankRetracted
+    Hold
+    Rope
+    Wheel
+    Hull
+    Tiller
+    Rudder
+    Sails
+    Storage
+    WeaponSlot
+}
+
+
+
+# CIRCLES.CFG
+
+Circle
+{
+    Mana
+    Difficulty
+    PointValue
+    Delay
+}
+
+
+
+# CMDS.CFG
+
+CmdLevel
+{
+    DIR
+    Alias
+}
+
+
+
+# COMBAT.CFG
+
+DisplayParrySuccessMessages
+WarmodeInhibitsRegen
+WarModeDelay
+SingleCombat
+CoreHitSounds
+ScriptedAttackChecks
+ResetSwingOnTurn
+SendSwingPacket
+SendDamagePacket
+AttackWhileFrozen
+SendAttackMsg
+
+
+
+# CONSOLE.CFG
+
+Commands
+{
+    CMD
+}
+
+
+
+# ECOMPILE.CFG
+
+ModuleDirectory
+IncludeDirectory
+PolScriptRoot
+PackageRoot
+GenerateListing
+GenerateDebugInfo
+GenerateDebugTextInfo
+DisplayWarnings
+CompileAspPages
+OnlyCompileUpdatedScripts
+GenerateDependencyInfo
+DisplayUpToDateScripts
+AutoCompileByDefault
+UpdateOnlyOnAutoCompile
+DisplaySummary
+OptimizeObjectMembers
+ErrorOnWarning
+ThreadedCompilation
+ParanoiaWarnings
+
+
+
+# EQUIP.CFG
+
+Equipment
+{
+    Armor
+    Weapon
+    Equip
+}
+
+
+
+# EXTOBJ.CFG
+
+Tillerman
+Port_Plank
+Starboard_Plank
+Hold
+Rope
+Wheel
+Hull
+Tiller
+Rudder
+Sails
+Storage
+Waponslot
+Wrestling
+Mount
+Shield
+Secure_Trade_Container
+Wornitems_Container
+
+
+
+# FILEACCESS.CFG
+
+FileAccess
+{
+  Package
+  Directory
+  Extension
+  AllowRead
+  AllowWrite
+  AllowAppend
+  AllowRemote
+}
+
+
+
+# ITEMDESC.CFG
+
+Item
+{
+    Name
+    Graphic
+    Color
+    Facing
+    Desc
+    Tooltip
+    WalkOnScript
+    Script
+    EquipScript
+    UnequipScript
+    ControlScript
+    CreateScript
+    DestroyScript
+    MethodScript
+    RequiresAttention
+    Lockable
+    VendorSellsFor
+    VendorBuysFor
+    DecayTime
+    SaveOnExit
+    Movable
+    DoubleClickRange
+    UseRequiresLOS
+    GhostsCanUse
+    CanUseWhileFrozen
+    CanUseWhileParalyzed
+    Newbie
+    Insured
+    Invisible
+    DecaysOnMultis
+    BlocksCastingIfInHand
+    StrRequired
+    MaxHP
+    Weight
+    OldObjtype
+    StackingIgnoresCProps
+    Resource
+    FireResist
+    ColdResist
+    EnergyResist
+    PoisonResist
+    PhysicalResist
+    FireDamage
+    ColdDamage
+    EnergyDamage
+    PoisonDamage
+    PhysicalDamage
+    StackLimit
+    NoDrop
+    CProp
+    Cprop
+}
+Container
+{
+    Gump
+    MinX
+    MaxX
+    MinY
+    MaxY
+    MaxWeight
+    MaxItems
+    MaxSlots
+    NoDropException
+    CanInsertScript
+    OnInsertScript
+    CanRemoveScript
+    OnRemoveScript
+}
+Spellbook
+{
+    SpellType
+}
+Door
+{
+    OpenGraphic
+    XMod
+    YMod
+}
+House
+{
+    MultiID
+}
+Boat
+{
+    MultiID
+}
+Map
+{
+    Editable
+}
+Weapon
+{
+    Speed
+    Delay
+    Damage
+    Attribute
+    Anim
+    MountedAnim
+    HitSound
+    MissSound
+    HitScript
+    MaxHP
+    Projectile
+    ProjectileType
+    ProjectileAnim
+    ProjectileSound
+    TwoHanded
+    MinRange
+    MaxRange
+}
+Armor
+{
+    AR
+    MaxHP
+    OnHitScript
+    Coverage
+}
+
+
+
+# JUSTICE.CFG
+
+Region
+{
+    Range
+    Realm
+    Guarded
+    EnterText
+    LeaveText
+    EnterScript
+    LeaveScript
+}
+
+
+
+# LIGHT.CFG
+
+LightRegion
+{
+    Range
+    Realm
+    Light
+}
+
+
+
+# MENUS.CFG
+
+ItemMenu
+{
+    Name
+    Title
+    Entry
+    SubMenu
+}
+
+
+
+# MOVECOST.CFG
+
+MovementCost
+{
+    Over
+}
+Walking
+{
+}
+Running
+{
+}
+Walking_Mounted
+{
+}
+Running_Mounted
+{
+}
+
+
+
+# MULTIS.CFG
+
+House
+{
+    static
+    dynamic
+}
+Boat
+{
+}
+Stairs
+{
+}
+
+
+
+# MUSIC.CFG
+
+Region
+{
+    Range
+    Realm
+    Midi
+}
+
+
+
+# NOCAST.CFG
+
+Region
+{
+    Range
+    Realm
+    Nocast
+}
+
+
+
+# NPCDESC.CFG
+
+NpcTemplate
+{
+    Name
+    ObjType
+    Script
+    Gender
+    TrueColor
+    Color
+    AR
+    FireResist
+    ColdResist
+    EnergyResist
+    PoisonResist
+    PhysicalResist
+    Alignment
+    AttackSpeed
+    AttackDelay
+    AttackDamage
+    AttackAttribute
+    AttackHitSound
+    AttackMissSound
+    AttackHitScript
+    AttackMinRange
+    AttackMaxRange
+    AttackAnimation
+    AttackProjectile
+    AttackProjectileAnim
+    AttackProjectileType
+    AttackProjectileSound
+    AttackCProp
+    Shield
+    ShieldOnHitScript
+    ShieldCProp
+    FireDamage
+    ColdDamage
+    EnergyDamage
+    PoisonDamage
+    PhysicalDamage
+    MaxHp
+    MoveMode
+    Privs
+    Settings
+    SpeechColor
+    SpeechFont
+    UseAdjustments
+    RunSpeed
+    SaveOnExit
+    MethodScript
+    NoDropException
+    CProp
+}
+
+
+
+# PARTY.CFG
+
+General
+{
+    MaxPartyMembers
+    TreatNoAsPrivate
+    DeclineTimeout
+    PrivateMsgPrefix
+    RemoveMemberOnLogoff
+    RejoinPartyOnLogon
+}
+HookList
+{
+    CanAddToParty
+    OnAddToParty
+    CanRemoveMember
+    CanLeaveParty
+    OnLeaveParty
+    OnPublicChat
+    OnPrivateChat
+    OnDisband
+    ChangePublicChat
+    ChangePrivateChat
+    OnPartyCreate
+    OnDecline
+    OnLootPermChange
+} 
+
+
+
+# PKG.CFG
+
+Enabled
+Name
+Requires
+Replaces
+Conflicts
+Version
+CoreRequired
+ProvidesSystemHomePage
+Maintainer
+Email
+
+
+
+# PKGROOTS.CFG
+
+PackageRoot
+{
+    dir
+}
+
+
+
+# POL.CFG
+
+UoDataFileRoot
+WorldDataPath
+RealmDataPath
+PidFilePath
+ListenPort
+ClientEncryptionVersion
+CountResourceTiles
+Multithread
+WebServer
+WebServerPort
+IgnoreLoadErrors
+DebugPort
+AccountDataSave
+Verbose
+LogLevel
+SelectTimeout
+WatchRpm
+WatchSysLoad
+WatchMapCache
+LogSysLoad
+InhibitSaves
+LogScriptCycles
+ProfileCProps
+WebServerLocalOnly
+WebServerDebug
+WebServerPassword
+CacheInteractiveScripts
+ShowSpeechColors
+RequireSpellbooks
+EnableSecureTrading
+RunawayScriptThreshold
+InactivityWarningTimeout
+InactivityDisconnectTimeout
+MinCmdlevelToLogin
+MinCmdLvlToIgnoreInactivity
+MaxCallDepth
+ThreadStacktracesWhenStuck
+DumpStackOnAssertionFailure
+DisplayUnknownPackets
+ExpLosChecksMap
+EnableDebugLog
+DebugPassword
+DebugLocalOnly
+DebugLevel
+ReportRunToCompletionScripts
+ReportCriticalScripts
+ReportMissingConfigs
+MaximumClients
+MaximumClientsBypassCmdLevel
+AllowMultiClientsPerAccount
+CharacterSlots
+MiniDumpType
+RetainCleartextPasswords
+AssertionFailureAction
+ShutdownSaveType
+TimestampEveryLine
+MaxTileID
+MaxObjtype
+DiscardOldEvents
+UseSingleThreadLogin
+DisableNagle
+ShowRealmInfo
+EnforceMountObjtype
+SingleThreadDecay
+ThreadDecayStatistics
+ReportCrashsAutomatically
+ReportAdminEmail
+ReportServer
+ReportURL
+
+
+
+# REGIONS.CFG
+
+Region
+{
+    Range
+    Realm
+    Guarded
+    EnterText
+    LeaveText
+    EnterScript
+    LeaveScript
+    Midi
+    NoCast
+    NoCombat
+    LightLevel
+    WeatherType
+    WeatherSeverity
+    WeatherAux
+    LightOverride
+}
+
+
+
+# REPSYS.CFG
+
+NameColoring
+{
+    Murderer
+    Criminal
+    Attackable
+    Innocent
+    Invulnerable
+    GuildAlly
+    GuildEnemy
+}
+General
+{
+    CriminalFlagInterval
+    AggressorFlagTimeout
+    PartyHelpFullCountsAsCriminal
+}
+HookList
+{
+    NameColor
+    HighLightColor
+    OnAttack
+    OnDamage
+    OnHelp
+}
+
+
+
+# RESOURCE.CFG
+
+ResourceSystem
+{
+    ResourceType
+}
+
+
+
+# RESOURCETYPE.CFG
+
+Global
+{
+    InitialUnits
+    LandTile
+    ObjType
+}
+Region
+{
+    Range
+    UnitsPerArea
+    SecondsPerRegrow
+    Capacity
+}
+
+
+
+# SERVERS.CFG
+
+GameServer
+{
+    Name
+    IP
+    Port
+    IPMatch
+    AcctMatch
+}
+
+
+
+# SERVSPECOPT.CFG
+
+AllowSecureTradingInWarMode
+DefaultDecayTime
+DefaultDoubleclickRange
+DefaultLightLevel
+MovementUsesStamina
+TotalStatsAtCreation
+DefaultContainerMaxItems
+DefaultContainerMaxWeight
+UOFeatureEnable
+MaxPathFindRange
+HiddenTurnsCount
+ItemColorMask
+DecayItems
+UseTileFlagPrefix
+UseWinLFH
+EventVisibilityCoreChecks
+DoubleClickWait
+InvulTag
+StartingGold
+PrivacyPaperdoll
+ForceNewObjCachePackets
+AllowMovingTrade
+CoreHandledLocks
+DefaultAttributeCap
+CoreSendsCaps
+SendStatLocks
+MaxContainerSlots
+UseContainerSlots
+EditServer
+CarryingCapacityMod
+SpeechRange
+WhisperRange
+YellRange
+CoreSendsSeason
+CoreHandledTags
+SupportFaces
+NewbieStartingEquipment
+SpeedhackPrevention
+ScriptedMerchantHandlers
+HonorUnequipScriptOnDeath
+SpeedHack_MountRunDelay
+SpeedHack_MountWalkDelay
+SpeedHack_FootRunDelay
+SpeedHack_FootWalkDelay
+SeperateSpeechTokens
+CoreGuildMessages
+MobilesBlockNpcMovement
+DefaultCharacterHeight
+
+
+
+# SPELLS.CFG
+
+Spell
+{
+    SpellID
+    Name
+    PowerWords
+    Script
+    Animation
+    Circle
+    Reagent
+    Mana
+    Difficulty
+    PointValue
+    Delay
+}
+
+
+
+# STACKING.CFG
+
+Stacking
+{
+    IgnoreCprops
+}
+
+
+
+# STARTLOC.CFG
+
+StartingLocation
+{
+    City
+    Description
+    MapID
+    Cliloc
+    Coordinate
+    Realm
+}
+
+
+
+# SYSHOOK.CFG
+
+SystemHookScript
+{
+}
+
+
+
+# UOCLIENT.CFG
+
+General
+{
+    Strength
+    Intelligence
+    Dexterity
+    Hits
+    Mana
+    Stamina
+    MaxSkillID  
+    MethodScript  
+}
+Protocol
+{
+    EnableFlowControlPackets
+}
+Listener
+{
+    Port
+    KeepClients
+    Encryption
+    AOSResistances
+}
+
+
+
+# UOCONVERT.CFG
+
+LOSOptions
+{
+    UseNoShoot
+    LOSThroughWindows
+}
+StaticOptions
+{
+    MaxStaticsPerBlock
+    WarningStaticsPerBlock
+    ShowIllegalGraphicWarning
+}
+TileOptions
+{
+    ShowRoofAndPlatformWarning
+}
+MultiTypes
+{
+  Boats
+  Houses
+  Stairs
+}
+Mounts
+{
+  Tiles
+}
+ClientOptions
+{
+  UseNewHSAFormat
+}
+
+
+
+# UOPACKET.CFG
+
+Packet
+{
+  Length
+  Version
+  ClientVersion
+  ReceiveFunction
+  SendFunction
+  SubCommandOffset
+  SubCommandLength
+}
+SubPacket
+{
+  SubCommandID
+  Version
+  ClientVersion
+  ReceiveFunction
+  SendFunction
+}
+
+
+
+# UOSKILLS.CFG
+
+Skill
+{
+    Attribute
+}
+
+
+
+# VITALS.CFG
+
+Vital
+{
+    RegenRateFunction
+    MaximumFunction
+    Alias...
+    UnderflowFunction
+    RegenWhileDead
+}
+
+
+
+# WATCH.CFG
+
+Combat
+ProfileScripts
+
+
+
+# WEATHER.CFG
+
+WeatherRegion
+{
+    Range
+    Realm
+    WeatherType
+    WeatherSeverity
+    WeatherAux
+    LightOverride
+}
+
+
+
+# WWW.CFG
+
+MIME
+{
+    Extension
+    MIME
+}
