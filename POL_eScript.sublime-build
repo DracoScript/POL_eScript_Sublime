@@ -1,0 +1,16 @@
+{
+	"selector": "source.polscript",
+
+	"windows": {
+        "cmd": ["$folder\\scripts\\ecompile.exe", "-b -r", "$file"]
+    },
+
+	"variants": [
+		{
+			"name": "Build All",
+        	"windows": {
+		        "cmd": ["$folder\\scripts\\ecompile.exe", "-b -r"]
+		    }
+		}
+    ]
+}
