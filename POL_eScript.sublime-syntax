@@ -415,7 +415,7 @@ contexts:
       scope: keyword.operator.arithmetic.polscript
     - match: '(?i)(&&|\band\b|\|\||\bor\b|\bnot\b)'
       scope: keyword.operator.bitwise.polscript
-    - match: '(==|!|!=|<|<=|>|>=)'
+    - match: '(==|!|!=|<=|<|>=|>)'
       scope: keyword.operator.logical.polscript
     - match: ;
       scope: keyword.operator.polscript
