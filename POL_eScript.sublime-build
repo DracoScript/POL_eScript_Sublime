@@ -1,5 +1,5 @@
 {
-	"selector": "source.polscript",
+	"selector": "source.polscript source.script.polscript",
 
 	"windows": {
         "cmd": ["$folder\\scripts\\ecompile.exe", "-b -r", "$file"]

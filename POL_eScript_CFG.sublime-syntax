@@ -4,7 +4,7 @@
 name: POL eScript CFG
 file_extensions:
   - cfg
-scope: source.polscript
+scope: source.cfg.polscript
 
 contexts:
   # The prototype context is prepended to all contexts but those setting

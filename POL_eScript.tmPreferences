@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>POL eScript Metadata</string>
+  <key>scope</key>
+  <string>source.polscript, source.script.polscript</string>
+  <key>settings</key>
+  <dict>
+    <key>increaseIndentPattern</key>
+    <string>^\s*\b(program|function|enum|if|else(if)?|case|while|for(each)?|do|repeat)\b.*$</string>
+    <key>decreaseIndentPattern</key>
+    <string>^\s*\b(endprogram|endfunction|endenum|endif|else(if)?|endcase|endwhile|endfor(each)?|dowhile|until)\b.*$</string>
+    <key>shellVariables</key>
+    <array>
+      <dict>
+        <key>name</key>
+        <string>TM_COMMENT_START</string>
+        <key>value</key>
+        <string>// </string>
+      </dict>
+      <dict>
+        <key>name</key>
+        <string>TM_COMMENT_START_2</string>
+        <key>value</key>
+        <string>/*</string>
+      </dict>
+      <dict>
+        <key>name</key>
+        <string>TM_COMMENT_END_2</string>
+        <key>value</key>
+        <string>*/</string>
+      </dict>
+    </array>
+    <key>cancelCompletion</key>
+    <string>^\s*\b(enum|else|case|repeat|do|continue\;|next\;|break\;|return\;|endprogram|endfunction|endenum|endif|endcase|endwhile|endfor(each)?)\b</string>
+  </dict>
+  <key>uuid</key>
+  <string>fdd8254a-d6fd-40c9-aad2-bca487c26696</string>
+</dict>
+</plist>
