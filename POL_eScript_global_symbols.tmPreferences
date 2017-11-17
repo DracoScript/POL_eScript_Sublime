@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>POL eScript Metadata</string>
+  <key>scope</key>
+  <string>source.polscript meta.function.polscript</string>
+  <key>settings</key>
+  <dict>
+    <key>showInIndexedSymbolList</key>
+    <integer>1</integer>
+  </dict>
+  <key>uuid</key>
+  <string>fdd8254a-d6fd-40c9-aad2-bca487c26696</string>
+</dict>
+</plist>
