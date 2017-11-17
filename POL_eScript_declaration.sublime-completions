@@ -1,5 +1,5 @@
 {
-	"scope": "source.polscript - source.script.polscript",
+	"scope": "source.polscript - (source.script.polscript|string.quoted.double.polscript|string.quoted.single.polscript)",
 
 	"completions": [
 
