@@ -16,7 +16,6 @@ contexts:
     - include: operators
     - include: strings
     - include: keywords
-    - include: members
     - include: constants
 
   main:
@@ -39,6 +38,7 @@ contexts:
     - include: repeat
     - include: functions
     - include: methods
+    - include: members
     - include: groupers
 
   groupers:
@@ -96,6 +96,7 @@ contexts:
       set: inside_function
     - include: functions
     - include: methods
+    - include: members
     - include: groupers
 
   inside_function:
@@ -132,6 +133,7 @@ contexts:
       set: inside_program
     - include: functions
     - include: methods
+    - include: members
     - include: groupers
 
   inside_program:
@@ -371,6 +373,7 @@ contexts:
       pop: true
     - include: functions
     - include: methods
+    - include: members
     - include: groupers
 
   methods:
@@ -386,6 +389,7 @@ contexts:
       pop: true
     - include: functions
     - include: methods
+    - include: members
     - include: groupers
 
   members:
@@ -426,7 +430,7 @@ contexts:
       scope: keyword.operator.arithmetic.polscript
     - match: '(?i)(&&|\band\b|\|\||\bor\b|\bnot\b)'
       scope: keyword.operator.bitwise.polscript
-    - match: '(==|!|!=|<=|<|>=|>)'
+    - match: '(==|!=|!|<=|<|>=|>)'
       scope: keyword.operator.logical.polscript
     - match: ;
       scope: keyword.operator.polscript

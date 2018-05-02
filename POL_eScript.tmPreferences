@@ -8,8 +8,6 @@
   <string>source.polscript, source.cfg.polscript</string>
   <key>settings</key>
   <dict>
-    <key>preserveIndent</key>
-    <true />
     <key>increaseIndentPattern</key>
     <string>^\s*\b(program|function|enum|if|else(if)?|case|while|for(each)?|do|repeat)\b.*$</string>
     <key>decreaseIndentPattern</key>
