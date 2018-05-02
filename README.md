@@ -3,6 +3,8 @@ Syntax Highlighting + Build for POL eScript in Sublime-Text 3 based on POLeScrip
 
 # Installing
 
+??/Sublime-Text-3/Packages/ folder can be found within Sublime-Text-3 -> Preferences -> Browse Packages...
+
 SYNTAX:
 To use this syntax highlight on Sublime-Text 3 you must locate your ??/Sublime-Text-3/Packages/ folder and place the .sublime-syntax files inside, usually in the Users folder.
 Now when opening .src, .inc and .cfg file they may be pointed to the corresponding POL eScript syntax. If not, you must check your bottom right corner of the sublime window and select from the list (check inside the User or the name of the folder you placed the files within Packages folder).
