@@ -144,22 +144,11 @@ contexts:
     - match: '"'
       scope: punctuation.definition.string.begin.polscript
       push: inside_string_double
-    - match: \'
-      scope: punctuation.definition.string.begin.polscript
-      push: inside_string_single
 
   inside_string_double:
     - meta_include_prototype: false
     - meta_scope: string.quoted.double.polscript
     - match: '"'
-      scope: punctuation.definition.string.end.polscript
-      pop: true
-    - include: htmltags
-
-  inside_string_single:
-    - meta_include_prototype: false
-    - meta_scope: string.quoted.single.polscript
-    - match: \'
       scope: punctuation.definition.string.end.polscript
       pop: true
     - include: htmltags
