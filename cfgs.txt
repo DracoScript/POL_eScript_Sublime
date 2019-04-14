@@ -152,6 +152,7 @@ DisplaySummary
 OptimizeObjectMembers
 ErrorOnWarning
 ThreadedCompilation
+NumberOfThreads
 ParanoiaWarnings
 
 
@@ -258,7 +259,6 @@ Item
     StackLimit
     NoDrop
     CProp
-    Cprop
 }
 Container
 {
@@ -606,6 +606,8 @@ ReportCrashsAutomatically
 ReportAdminEmail
 ReportServer
 ReportURL
+ShowWarningGump
+ShowWarningItem
 
 
 
@@ -706,6 +708,7 @@ GameServer
 AllowSecureTradingInWarMode
 DefaultDecayTime
 DefaultDoubleclickRange
+DefaultAccessibleRange
 DefaultLightLevel
 MovementUsesStamina
 TotalStatsAtCreation
@@ -814,8 +817,8 @@ General
     Hits
     Mana
     Stamina
-    MaxSkillID  
-    MethodScript  
+    MaxSkillID
+    MethodScript 
 }
 Protocol
 {
@@ -903,7 +906,7 @@ Vital
 {
     RegenRateFunction
     MaximumFunction
-    Alias...
+    Alias
     UnderflowFunction
     RegenWhileDead
 }

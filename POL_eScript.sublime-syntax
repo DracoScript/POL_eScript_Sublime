@@ -57,7 +57,7 @@ contexts:
       captures:
         1: storage.type.polscript
         2: meta.function.parameters.polscript
-    - match: '(?i)\b(array|dictionary|struct|byref|error)\b'
+    - match: '(?i)\b(array|dictionary|struct|error)\b'
       scope: storage.type.polscript
     - match: '(?i)\b(return|exit)\b'
       scope: keyword.control.conditional.polscript
@@ -84,8 +84,9 @@ contexts:
     - include: script
 
   param_function:
-    - match: (\(|\,)\s*\b(\w*)\b\s*
+    - match: '\,*\s*\b(byref)\b\s*\b(\w*)\b\s*'
       captures:
+        1: storage.type.polscript
         2: meta.function.parameters.polscript
     - match: \,
       scope: keyword.control.conditional.polscript
@@ -377,7 +378,7 @@ contexts:
     - include: groupers
 
   methods:
-    - match: '(?i)\.\b(addcharacter|ban|checkpassword|delete|deletecharacter|disable|enable|eraseprop|get_member|getcharacter|getprop|move_char|propnames|set_uo_expansion|setdefaultcmdlevel|setname|setpassword|setprop|split|unban|append|cycle|erase|exists|insert|randomentry|reverse|shrink|size|sort|transmit|close|flush|getint16|getint32|getint8|getsint16|getsint32|getsint8|getstring|peek|seek|setint16|setint32|setint8|setsint16|setsint32|setsint8|setstring|tell|move_offline_mobiles|addbuff|attack_once|clearaggressorto|clearbuffs|clearlawfullydamagedto|cleargottenitem|compareversion|deaf|delbuff|disableskillsfor|enabled|getcorpse|getgottenitem|kill|privileges|removereportable|setaggressorto|setlawfullydamagedto|setcmdlevel|setcriminal|setfacing|setlightlevel|setmurderer|setparalyzed|setpoisoned|setseason|setswingtimer|setwarmode|spendgold|squelch|createelement|deleteelement|findelement|keys|open|toggle|addallyguild|addenemyguild|addmember|isallyguild|isenemyguild|ismember|removeallyguild|removeenemyguild|removemember|acceptcommit|add_component|addhousepart|cancelediting|erase_component|erasehousepart|setcustom|hasexistingstack|splitstackat|splitstackinto|appendpin|erasepin|getpins|insertpin|setmaster|getint16flipped|getint32flipped|getsize|getunicodestring|getunicodestringflipped|sendareapacket|sendpacket|setint16flipped|setint32flipped|setsize|setunicodestring|setunicodestringflipped|addcandidate|removecandidate|setleader|clear_script_profile_counters|log_profile|set_priority_divide|clear_event_queue|loadsymbols|sendevent|addspell|hasspell|removespell|spells|find|format|join|length|lower|upper|isa|set_member)\b\('
+    - match: '(?i)\.\b(addcharacter|ban|checkpassword|delete|deletecharacter|disable|enable|eraseprop|get_member|getcharacter|getprop|move_char|propnames|set_uo_expansion|setdefaultcmdlevel|setname|setpassword|setprop|split|unban|append|cycle|erase|exists|insert|randomentry|reverse|shrink|size|sort|sorted_insert|transmit|close|flush|getint16|getint32|getint8|getsint16|getsint32|getsint8|getstring|peek|seek|setint16|setint32|setint8|setsint16|setsint32|setsint8|setstring|tell|move_offline_mobiles|addbuff|attack_once|clearaggressorto|clearbuffs|clearlawfullydamagedto|cleargottenitem|compareversion|deaf|delbuff|disableskillsfor|enabled|getcorpse|getgottenitem|kill|privileges|removereportable|setaggressorto|setlawfullydamagedto|setcmdlevel|setcriminal|setfacing|setlightlevel|setmurderer|setparalyzed|setpoisoned|setseason|setswingtimer|setwarmode|spendgold|squelch|createelement|deleteelement|findelement|keys|open|toggle|addallyguild|addenemyguild|addmember|isallyguild|isenemyguild|ismember|removeallyguild|removeenemyguild|removemember|acceptcommit|add_component|addhousepart|cancelediting|erase_component|erasehousepart|setcustom|hasexistingstack|splitstackat|splitstackinto|appendpin|erasepin|getpins|insertpin|setmaster|getint16flipped|getint32flipped|getsize|getunicodestring|getunicodestringflipped|sendareapacket|sendpacket|setint16flipped|setint32flipped|setsize|setunicodestring|setunicodestringflipped|addcandidate|removecandidate|setleader|clear_script_profile_counters|log_profile|set_priority_divide|clear_event_queue|loadsymbols|sendevent|addspell|hasspell|removespell|spells|find|format|join|length|lower|upper|isa|set_member)\b\('
       scope: entity.name.function.constructor.polscript
       push: param_methods
 

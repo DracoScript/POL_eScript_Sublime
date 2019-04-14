@@ -23,28 +23,13 @@ contexts:
     - include: structures
 
   script:
-    - include: enum
     - include: braces
     - include: brackets
     - include: parens
 
 
   # MAIN
-
-  enum:
-    # ENUM statement balancing control
-    - match: '(?i)\benum\b'
-      scope: keyword.control.conditional.polscript
-      push: inside_enum
-    - match: '(?i)\bendenum\b'
-      scope: invalid.illegal.polscript
-
-  inside_enum:
-    - match: '(?i)\bendenum\b'
-      scope: keyword.control.conditional.polscript
-      pop: true
-    - include: script
-
+  
 
   # BRACES & PARENS
 

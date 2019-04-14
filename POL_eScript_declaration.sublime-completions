@@ -1,42 +1,41 @@
 {
-	"scope": "source.polscript - (source.script.polscript|string.quoted.double.polscript|string.quoted.single.polscript)",
+    "scope": "source.polscript - (source.script.polscript|string.quoted.double.polscript|string.quoted.single.polscript)",
 
-	"completions": [
+    "completions": [
 
-		// Use
-		{ "trigger": "attributes\tuse", "contents": "use attributes;" },
-		{ "trigger": "basic\tuse", "contents": "use basic;" },
-		{ "trigger": "basicio\tuse", "contents": "use basicio;" },
-		{ "trigger": "boat\tuse", "contents": "use boat;" },
-		{ "trigger": "cfgfile\tuse", "contents": "use cfgfile;" },
-		{ "trigger": "cliloc\tuse", "contents": "use cliloc;" },
-		{ "trigger": "datafile\tuse", "contents": "use datafile;" },
-		{ "trigger": "file\tuse", "contents": "use file;" },
-		{ "trigger": "guild\tuse", "contents": "use guild;" },
-		{ "trigger": "http\tuse", "contents": "use http;" },
-		{ "trigger": "math\tuse", "contents": "use math;" },
-		{ "trigger": "npc\tuse", "contents": "use npc;" },
-		{ "trigger": "os\tuse", "contents": "use os;" },
-		{ "trigger": "party\tuse", "contents": "use party;" },
-		{ "trigger": "polsys\tuse", "contents": "use polsys;" },
-		{ "trigger": "storage\tuse", "contents": "use storage;" },
-		{ "trigger": "mysql\tuse", "contents": "use mysql;" },
-		{ "trigger": "unicode\tuse", "contents": "use unicode;" },
-		{ "trigger": "uo\tuse", "contents": "use uo;" },
-		{ "trigger": "util\tuse", "contents": "use util;" },
-		{ "trigger": "vitals\tuse", "contents": "use vitals;" },
+        // Use
+        { "trigger": "attributes\tuse", "contents": "use attributes;" },
+        { "trigger": "basic\tuse", "contents": "use basic;" },
+        { "trigger": "basicio\tuse", "contents": "use basicio;" },
+        { "trigger": "boat\tuse", "contents": "use boat;" },
+        { "trigger": "cfgfile\tuse", "contents": "use cfgfile;" },
+        { "trigger": "cliloc\tuse", "contents": "use cliloc;" },
+        { "trigger": "datafile\tuse", "contents": "use datafile;" },
+        { "trigger": "file\tuse", "contents": "use file;" },
+        { "trigger": "guild\tuse", "contents": "use guild;" },
+        { "trigger": "http\tuse", "contents": "use http;" },
+        { "trigger": "math\tuse", "contents": "use math;" },
+        { "trigger": "npc\tuse", "contents": "use npc;" },
+        { "trigger": "os\tuse", "contents": "use os;" },
+        { "trigger": "party\tuse", "contents": "use party;" },
+        { "trigger": "polsys\tuse", "contents": "use polsys;" },
+        { "trigger": "storage\tuse", "contents": "use storage;" },
+        { "trigger": "mysql\tuse", "contents": "use mysql;" },
+        { "trigger": "unicode\tuse", "contents": "use unicode;" },
+        { "trigger": "uo\tuse", "contents": "use uo;" },
+        { "trigger": "util\tuse", "contents": "use util;" },
+        { "trigger": "vitals\tuse", "contents": "use vitals;" },
 
-		// Include
-		{ "trigger": "include\tinclude", "contents": "include \"$1\";" },
+        // Include
+        { "trigger": "include\tinclude", "contents": "include \"$1\";" },
 
-		// Program
-		{ "trigger": "program\tdefine", "contents": "program $1($2)" },
-		"endprogram",
+        // Program
+        { "trigger": "program\tdefine", "contents": "program $1($2)\nendprogram" },
 
-		// Function
-		{ "trigger": "function\tdefine", "contents": "function $1($2)" },
-		{ "trigger": "exported function\tdefine", "contents": "exported function $1($2)" },
+        // Function
+        { "trigger": "function\tdefine", "contents": "function $1($2)\nendfunction" },
+        { "trigger": "exported function\tdefine", "contents": "exported function $1($2)\nendfunction" }
 
-	]
+    ]
 
 }
