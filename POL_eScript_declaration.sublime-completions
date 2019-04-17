@@ -30,11 +30,11 @@
         { "trigger": "include\tinclude", "contents": "include \"$1\";" },
 
         // Program
-        { "trigger": "program\tdefine", "contents": "program $1($2)\nendprogram" },
+        { "trigger": "program\tscript", "contents": "program $1($2)\nendprogram" },
 
         // Function
-        { "trigger": "function\tdefine", "contents": "function $1($2)\nendfunction" },
-        { "trigger": "exported function\tdefine", "contents": "exported function $1($2)\nendfunction" }
+        { "trigger": "function\tscript", "contents": "function $1($2)\nendfunction" },
+        { "trigger": "exported function\tscript", "contents": "exported function $1($2)\nendfunction" }
 
     ]
 
