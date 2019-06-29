@@ -1,7 +1,13 @@
-# POL_eScript_Sublime
+# USE POLSERVER VERSION BASED ON THIS ONE
+https://github.com/polserver/sublime-escript
+
+
+# IF YOU RATHER USE THIS VERSION
+
+## POL_eScript_Sublime
 Syntax Highlighting + Build for POL eScript in Sublime-Text 3 based on POLeScriptNPP (for Notepad++).
 
-# Installing
+## Installing
 
 ??/Sublime-Text-3/Packages/ folder can be found within Sublime-Text-3 -> Preferences -> Browse Packages...
 
@@ -17,6 +23,6 @@ This file uses a path based on the first opened folder inside Sublime-Text, whic
 There is a main build command to be ran we used the "Build" inside a file opened with the syntax, because it uses a base scope of source.polscript. This build option may be used using the menu Tools > Build or using the shortcut "Ctrl+B" (for windows).
 Within the build file there is a variant for to build all files and it can be accessed using the menu Tools > Build With... or using the shortcut "Ctrl+Shift+B" and selecting the "POL_eScript - Build All" option, since the "POL_eScript" option is the normal functionality of building the current file.
 
-# How can you help?
+## How can you help?
 You may help improve this syntax highlighting by pointing out errors or suggesting new features.
 I don't know if there is a way to run the ecompile.exe using linux or osx system, therefore they were not yet added to the build options.
